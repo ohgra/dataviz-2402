@@ -58,30 +58,30 @@ st.image(avg_image_path, caption=f"Class Average for Class {selected_class}", us
 
 # Display six images arranged as three rows, two images per row
 st.subheader("Feature Kernel (using ResNet50) per Class")
-for i in range(1, 7):
-    col_left, col_right = st.columns(2)
-    with col_left:
-        img_path_left = f"src/class/kernel/{selected_class}- ({i}).png"
-        st.image(img_path_left, caption=f"Kernel {i}", use_column_width=True)
-    with col_right:
-        img_path_right = f"images/src/class/kernel/{selected_class}- ({i+1}).png"
-        st.image(img_path_right, caption=f"Kernel {i+1}", use_column_width=True)
-    
-    col_left, col_right = st.columns(2)
-    with col_left:
-        img_path_left = f"src/class/kernel/{selected_class}- ({i+2}).png"
-        st.image(img_path_left, caption=f"Kernel {i}", use_column_width=True)
-    with col_right:
-        img_path_right = f"src/class/kernel/{selected_class}- ({i+3}).png"
-        st.image(img_path_right, caption=f"Kernel {i+1}", use_column_width=True)
-    
-    col_left, col_right = st.columns(2)
-    with col_left:
-        img_path_left = f"src/class/kernel/{selected_class}- ({i+4}).png"
-        st.image(img_path_left, caption=f"Kernel {i}", use_column_width=True)
-    with col_right:
-        img_path_right = f"images/src/class/kernel/{selected_class}- ({i+5}).png"
-        st.image(img_path_right, caption=f"Kernel {i+1}", use_column_width=True)
+col_left, col_right = st.columns(2)
+i=1
+with col_left:
+    img_path_left = f"src/class/kernel/{selected_class}- ({i}).png"
+    st.image(img_path_left, caption=f"Kernel {i}", use_column_width=True)
+with col_right:
+    img_path_right = f"images/src/class/kernel/{selected_class}- ({i+1}).png"
+    st.image(img_path_right, caption=f"Kernel {i+1}", use_column_width=True)
+
+col_left, col_right = st.columns(2)
+with col_left:
+    img_path_left = f"src/class/kernel/{selected_class}- ({i+2}).png"
+    st.image(img_path_left, caption=f"Kernel {i}", use_column_width=True)
+with col_right:
+    img_path_right = f"src/class/kernel/{selected_class}- ({i+3}).png"
+    st.image(img_path_right, caption=f"Kernel {i+1}", use_column_width=True)
+
+col_left, col_right = st.columns(2)
+with col_left:
+    img_path_left = f"src/class/kernel/{selected_class}- ({i+4}).png"
+    st.image(img_path_left, caption=f"Kernel {i}", use_column_width=True)
+with col_right:
+    img_path_right = f"images/src/class/kernel/{selected_class}- ({i+5}).png"
+    st.image(img_path_right, caption=f"Kernel {i+1}", use_column_width=True)
 
 # ------------------------------------------------------------------
 # 5) Section for SHAP Values on an Image Based on Slider Input
