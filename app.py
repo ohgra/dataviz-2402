@@ -96,8 +96,8 @@ for percent in range(101):
     progressbar.progress(percent)
     text.text("Calculating... {percent}%")
 text.empty()
-avg_image_path = f"src/shap/{slider_value}.png"
-st.image(avg_image_path, caption=f"Shap Value for Image {slider_value}", use_column_width=True)
+shap_image_path = f"src/shap/{slider_value}.png"
+st.image(shap_image_path, caption=f"Shap Value for Image {slider_value}", use_column_width=True)
 # model = ResNet50(weights="imagenet")
 
 #     # File paths for the data and class names
