@@ -88,7 +88,6 @@ with col_right:
 st.header("Shaply Values for Images")
 slider_value = st.slider("Select an image index (0-48)", min_value=0, max_value=48, value=12, step=1)
 
-
 model = ResNet50(weights="imagenet")
 
     # File paths for the data and class names
@@ -98,7 +97,7 @@ class_names_file = "src/data/imagenet_class_index.json"
     # Load image data
 X = np.load(data_file, allow_pickle=True)
 X = np.clip(X, 0, 255).astype(np.uint8)
-
+y = None
     # Load class names from JSON file
 with open(class_names_file, 'r') as f:
     class_names = [v[1] for v in json.load(f).values()]
@@ -107,7 +106,7 @@ def f(x):
     tmp = x.copy()
     preprocess_input(tmp)
     return model(tmp)
-    # Create a masker using an inpainting method
+
 masker = shap.maskers.Image("inpaint_telea", X[0].shape)
 explainer = shap.Explainer(f, masker, output_names=class_names)
 
