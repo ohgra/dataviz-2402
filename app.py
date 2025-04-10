@@ -64,7 +64,7 @@ with col_left:
     img_path_left = f"src/class/kernel/{selected_class}- (1).png"
     st.image(img_path_left, caption=f"Kernel 1", use_column_width=True)
 with col_right:
-    img_path_right = f"images/src/class/kernel/{selected_class}- (2).png"
+    img_path_right = f"src/class/kernel/{selected_class}- (2).png"
     st.image(img_path_right, caption=f"Kernel 2", use_column_width=True)
 
 col_left, col_right = st.columns(2)
@@ -80,7 +80,7 @@ with col_left:
     img_path_left = f"src/class/kernel/{selected_class}- (5).png"
     st.image(img_path_left, caption=f"Kernel 5", use_column_width=True)
 with col_right:
-    img_path_right = f"images/src/class/kernel/{selected_class}- (6).png"
+    img_path_right = f"src/class/kernel/{selected_class}- (6).png"
     st.image(img_path_right, caption=f"Kernel 6", use_column_width=True)
 
 # ------------------------------------------------------------------
