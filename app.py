@@ -93,7 +93,6 @@ progressbar=st.progress(0)
 text =  st.empty()
 
 for percent in range(101):
-    time.sleep(15/100)
     progressbar.progress(percent)
     text.text(f"Calculating... {percent}%")
 text.empty()
