@@ -95,7 +95,7 @@ for percent in range(101):
     time.sleep(15/100)
     progressbar.progress(percent)
     text.text("Calculating... {percent}%")
-
+text.empty()
 avg_image_path = f"src/shap/{slider_value}.png"
 st.image(avg_image_path, caption=f"Shap Value for Image {slider_value}", use_column_width=True)
 # model = ResNet50(weights="imagenet")
