@@ -85,35 +85,45 @@ with col_right:
 
 # ------------------------------------------------------------------
 # 5) Section for SHAP Values on an Image Based on Slider Input
-st.header("Shaply Values for Images")
+st.header("Shaply Values for Image")
 slider_value = st.slider("Select an image index (0-48)", min_value=0, max_value=48, value=12, step=1)
 
-model = ResNet50(weights="imagenet")
+progressbar=st.progress(0)
+text =  st.empty()
 
-    # File paths for the data and class names
-data_file = "src/data/imagenet50_224x224.npy"
-class_names_file = "src/data/imagenet_class_index.json"
+for percent in range(101):
+    time.sleep(15/100)
+    progressbar.progress(percent)
+    text.text("Calculating... {percent}%")
 
-    # Load image data
-X = np.load(data_file, allow_pickle=True)
-X = np.clip(X, 0, 255).astype(np.uint8)
-y = None
-    # Load class names from JSON file
-with open(class_names_file, 'r') as f:
-    class_names = [v[1] for v in json.load(f).values()]
+avg_image_path = f"src/shap/{slider_value}.png"
+st.image(avg_image_path, caption=f"Shap Value for Image {slider_value}", use_column_width=True)
+# model = ResNet50(weights="imagenet")
+
+#     # File paths for the data and class names
+# data_file = "src/data/imagenet50_224x224.npy"
+# class_names_file = "src/data/imagenet_class_index.json"
+
+#     # Load image data
+# X = np.load(data_file, allow_pickle=True)
+# X = np.clip(X, 0, 255).astype(np.uint8)
+# y = None
+#     # Load class names from JSON file
+# with open(class_names_file, 'r') as f:
+#     class_names = [v[1] for v in json.load(f).values()]
     
-def f(x):
-    tmp = x.copy()
-    preprocess_input(tmp)
-    return model(tmp)
+# def f(x):
+#     tmp = x.copy()
+#     preprocess_input(tmp)
+#     return model(tmp)
 
-masker = shap.maskers.Image("inpaint_telea", X[0].shape)
-explainer = shap.Explainer(f, masker, output_names=class_names)
+# masker = shap.maskers.Image("inpaint_telea", X[0].shape)
+# explainer = shap.Explainer(f, masker, output_names=class_names)
 
-# Use the slider value as the index for the image to explain.
-imgs = X[slider_value:slider_value+1]
-shap_values = explainer(imgs, max_evals=200, batch_size=50, outputs=shap.Explanation.argsort.flip[:4])
-plt.figure()
-shap.image_plot(shap_values, show=False)
-fig = plt.gcf()
-st.pyplot(fig)
+# # Use the slider value as the index for the image to explain.
+# imgs = X[slider_value:slider_value+1]
+# shap_values = explainer(imgs, max_evals=200, batch_size=50, outputs=shap.Explanation.argsort.flip[:4])
+# plt.figure()
+# shap.image_plot(shap_values, show=False)
+# fig = plt.gcf()
+# st.pyplot(fig)
