@@ -28,10 +28,22 @@ st.header("Neural Network Visualization")
 col_video1, col_video2 = st.columns(2)
 with col_video1:
     st.subheader("3 Layer")
-    st.video("src/nnv/1.mp4")
+    video_html_3 = """
+    <video width="100%" autoplay controls>
+      <source src="src/nnv/1.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    """
+    st.markdown(video_html_3, unsafe_allow_html=True)
 with col_video2:
     st.subheader("4 Layer")
-    st.video("src/nnv/2.mp4")
+    video_html_4 = """
+    <video width="100%" autoplay controls>
+      <source src="src/nnv/2.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    """
+    st.markdown(video_html_4, unsafe_allow_html=True)
 
 # ------------------------------------------------------------------
 # 4) Section with 10 Radio Buttons and 7 Images Display
@@ -41,7 +53,7 @@ selected_class = st.radio("Select Class (1-10)", options=list(range(0, 10)))
 # Display image for "class average value representation"
 st.subheader("Class Average Value Representation")
 # Adjust the image path as needed. Here we assume an image file naming convention.
-avg_image_path = f"src/class/avg{selected_class}.png"
+avg_image_path = f"src/class/avg/{selected_class}.png"
 st.image(avg_image_path, caption=f"Class Average for Class {selected_class}", use_column_width=True)
 
 # Display six images arranged as three rows, two images per row
@@ -49,7 +61,7 @@ st.subheader("Feature Kernel (using ResNet50) per Class")
 for i in range(1, 7, 2):
     col_left, col_right = st.columns(2)
     with col_left:
-        img_path_left = f"src/class/kernel/feature_kernel_{selected_class}_{i}.png"
+        img_path_left = f"src/class/kernel/{selected_class}- {i}.png"
         st.image(img_path_left, caption=f"Kernel {i}", use_column_width=True)
     with col_right:
         img_path_right = f"images/src/class/kernel/{selected_class}- ({i+1}).png"
@@ -57,7 +69,7 @@ for i in range(1, 7, 2):
     
     col_left, col_right = st.columns(2)
     with col_left:
-        img_path_left = f"src/class/kernel/feature_kernel_{selected_class}_{i+2}.png"
+        img_path_left = f"src/class/kernel/{selected_class}- {i+2}.png"
         st.image(img_path_left, caption=f"Kernel {i}", use_column_width=True)
     with col_right:
         img_path_right = f"src/class/kernel/{selected_class}- ({i+3}).png"
@@ -65,7 +77,7 @@ for i in range(1, 7, 2):
     
     col_left, col_right = st.columns(2)
     with col_left:
-        img_path_left = f"src/class/kernel/feature_kernel_{selected_class}_{i+4}.png"
+        img_path_left = f"src/class/kernel/{selected_class}- {i+4}.png"
         st.image(img_path_left, caption=f"Kernel {i}", use_column_width=True)
     with col_right:
         img_path_right = f"images/src/class/kernel/{selected_class}- ({i+5}).png"
