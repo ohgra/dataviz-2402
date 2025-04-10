@@ -90,50 +90,33 @@ slider_value = st.slider("Select an image index (0-48)", min_value=0, max_value=
 
 # Define caching to prevent reloading the model and data on every interaction.
 @st.cache(allow_output_mutation=True, show_spinner=False)
-def load_model_and_data():
     # Load the ResNet50 model (with ImageNet weights)
-    model = ResNet50(weights="imagenet")
+model = ResNet50(weights="imagenet")
 
     # File paths for the data and class names
-    data_file = "src/data/imagenet50_224x224.npy"
-    class_names_file = "src/data/imagenet_class_index.json"
+data_file = "src/data/imagenet50_224x224.npy"
+class_names_file = "src/data/imagenet_class_index.json"
 
     # Load image data
-    X = np.load(data_file, allow_pickle=True)
-    X = np.clip(X, 0, 255).astype(np.uint8)
+X = np.load(data_file, allow_pickle=True)
+X = np.clip(X, 0, 255).astype(np.uint8)
 
     # Load class names from JSON file
-    with open(class_names_file, 'r') as f:
-        class_names = [v[1] for v in json.load(f).values()]
-
-    return model, X, class_names
-
-model, X, class_names = load_model_and_data()
-
-# Cache the explainer setup for efficiency.
-@st.cache(allow_output_mutation=True, show_spinner=False)
-def get_explainer(model, X, class_names):
-    def f(x):
-        tmp = x.copy()
-        preprocess_input(tmp)
-        return model(tmp)
+with open(class_names_file, 'r') as f:
+    class_names = [v[1] for v in json.load(f).values()]
+    
+def f(x):
+    tmp = x.copy()
+    preprocess_input(tmp)
+    return model(tmp)
     # Create a masker using an inpainting method
-    masker = shap.maskers.Image("inpaint_telea", X[0].shape)
-    explainer = shap.Explainer(f, masker, output_names=class_names)
-    return explainer
-
-explainer = get_explainer(model, X, class_names)
+masker = shap.maskers.Image("inpaint_telea", X[0].shape)
+explainer = shap.Explainer(f, masker, output_names=class_names)
 
 # Use the slider value as the index for the image to explain.
 imgs = X[slider_value:slider_value+1]
-try:
-    # Run SHAP explanation with the provided settings.
-    shap_values = explainer(imgs, max_evals=200, batch_size=50, outputs=shap.Explanation.argsort.flip[:4])
-except Exception as e:
-    st.error(f"Error during SHAP computation: {e}")
-else:
-    # Create a new matplotlib figure and plot the SHAP values.
-    plt.figure()
-    shap.image_plot(shap_values, show=False)
-    fig = plt.gcf()
-    st.pyplot(fig)
+shap_values = explainer(imgs, max_evals=200, batch_size=50, outputs=shap.Explanation.argsort.flip[:4])
+plt.figure()
+shap.image_plot(shap_values, show=False)
+fig = plt.gcf()
+st.pyplot(fig)
