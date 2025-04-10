@@ -2,6 +2,7 @@ import streamlit as st
 import numpy as np
 import json
 import shap
+import time
 import matplotlib.pyplot as plt
 from tensorflow.keras.applications.resnet50 import ResNet50, preprocess_input
 
@@ -94,7 +95,7 @@ text =  st.empty()
 for percent in range(101):
     time.sleep(15/100)
     progressbar.progress(percent)
-    text.text("Calculating... {percent}%")
+    text.text(f"Calculating... {percent}%")
 text.empty()
 shap_image_path = f"src/shap/{slider_value}.png"
 st.image(shap_image_path, caption=f"Shap Value for Image {slider_value}", use_column_width=True)
