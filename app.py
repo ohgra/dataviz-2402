@@ -30,7 +30,7 @@ with col_video1:
     st.subheader("3 Layer")
     video_html_3 = """
     <video width="100%" autoplay controls>
-      <source src="src/nnv/1.mp4" type="video/mp4">
+      <source src="https://raw.githubusercontent.com/ohgra/dataviz-2402/refs/heads/main/src/nnv/1.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
     """
@@ -39,7 +39,7 @@ with col_video2:
     st.subheader("4 Layer")
     video_html_4 = """
     <video width="100%" autoplay controls>
-      <source src="src/nnv/2.mp4" type="video/mp4">
+      <source src="https://raw.githubusercontent.com/ohgra/dataviz-2402/refs/heads/main/src/nnv/2.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
     """
@@ -58,7 +58,7 @@ st.image(avg_image_path, caption=f"Class Average for Class {selected_class}", us
 
 # Display six images arranged as three rows, two images per row
 st.subheader("Feature Kernel (using ResNet50) per Class")
-for i in range(1, 7, 2):
+for i in range(1, 7):
     col_left, col_right = st.columns(2)
     with col_left:
         img_path_left = f"src/class/kernel/{selected_class}- {i}.png"
