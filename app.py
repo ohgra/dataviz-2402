@@ -18,9 +18,8 @@ st.title("Explainable AI with Image")
 # 2) About the Dataset Section
 st.header("About the Dataset")
 st.write("""
-This dataset comprises images from ImageNet resized to 224x224 and stored in a NumPy array.
-Each image represents a class and has been preprocessed for the ResNet50 model.
-(Replace this text with your detailed description of the dataset.)
+For Neural Network Vizualization and Feature Maps CIFAR-10 dataset is used.
+For Shapley we have used Imagenet50 images.
 """)
 
 # ------------------------------------------------------------------
