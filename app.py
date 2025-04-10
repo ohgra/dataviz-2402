@@ -88,9 +88,7 @@ with col_right:
 st.header("Shaply Values for Images")
 slider_value = st.slider("Select an image index (0-48)", min_value=0, max_value=48, value=12, step=1)
 
-# Define caching to prevent reloading the model and data on every interaction.
-@st.cache(allow_output_mutation=True, show_spinner=False)
-    # Load the ResNet50 model (with ImageNet weights)
+
 model = ResNet50(weights="imagenet")
 
     # File paths for the data and class names
