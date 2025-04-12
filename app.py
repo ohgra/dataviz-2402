@@ -16,18 +16,32 @@ st.title("Explainable AI with Image")
 
 # ------------------------------------------------------------------
 # 2) About the Dataset Section
-st.header("About the Dataset")
+st.header("📊 About the Dataset")
+
 st.write("""
-For Neural Network Vizualization and Feature Maps CIFAR-10 dataset is used.
-For Shapley we have used Imagenet50 images.
+We're working with two powerful datasets to bring deep learning to life:
+
+- 🧠 **CIFAR-10** for neural network visualizations and feature maps — featuring 60,000 colorful 32×32 images across 10 object classes.
+- 🔍 **ImageNet-50** for SHAP (Shapley Additive Explanations) — giving us high-resolution insights into model interpretability.
+
+These datasets help us explore both **what the model learns** and **why it makes predictions**.
 """)
 
 # ------------------------------------------------------------------
 # 3) Two Videos Side by Side for Neural Network Visualization
-st.header("Neural Network Visualization")
+st.header("🔥 Neural Network in Action!")
+
+st.write("""
+Ever wondered what a neural network *actually sees*?  
+We've taken vibrant **32×32×3 CIFAR-10 images**, flattened and fed them through powerful **3-layer and 4-layer neural networks**, trained on **50,000 examples**.
+
+Now, watch the magic unfold ✨ — as we animate the predictions on **10,000 test images**.  
+Experience deep learning, visually.
+""")
+
 col_video1, col_video2 = st.columns(2)
 with col_video1:
-    st.subheader("3 Layer")
+    st.subheader("🔍 Exploring the 3-Layer Neural Network")
     video_html_3 = """
     <video width="100%" autoplay controls>
       <source src="https://raw.githubusercontent.com/ohgra/dataviz-2402/refs/heads/main/src/nnv/1.mp4" type="video/mp4">
@@ -36,7 +50,7 @@ with col_video1:
     """
     st.markdown(video_html_3, unsafe_allow_html=True)
 with col_video2:
-    st.subheader("4 Layer")
+    st.subheader("🔍 Exploring the 4-Layer Neural Network")
     video_html_4 = """
     <video width="100%" autoplay controls>
       <source src="https://raw.githubusercontent.com/ohgra/dataviz-2402/refs/heads/main/src/nnv/2.mp4" type="video/mp4">
@@ -48,16 +62,41 @@ with col_video2:
 # ------------------------------------------------------------------
 # 4) Section with 10 Radio Buttons and 7 Images Display
 st.header("Visualizations per Class")
-selected_class = st.radio("Select Class (1-10)", options=list(range(0, 10)))
+# List of class names
+class_names = [
+    "Airplane", "Automobile", "Bird", "Cat", "Deer", 
+    "Dog", "Frog", "Horse", "Ship", "Truck"
+]
+
+# Create the radio button with vertical alignment and class names
+selected_class = st.radio("Select Class", options=class_names, index=0)
+
+# Display the selected class
+st.write(f"You selected: {selected_class}")
+
 
 # Display image for "class average value representation"
-st.subheader("Class Average Value Representation")
+st.subheader("📊 Class-Wise Average Activation Representation")
+
+st.write("""
+For each class in the dataset, we've averaged the **activation values** from the network to capture how the model internally **represents each class**.
+
+This provides insight into the **class-specific patterns** learned across the layers of our fully connected neural network.
+""")
+
 # Adjust the image path as needed. Here we assume an image file naming convention.
 avg_image_path = f"src/class/avg/{selected_class}.png"
 st.image(avg_image_path, caption=f"Class Average for Class {selected_class}", use_container_width=True)
 
 # Display six images arranged as three rows, two images per row
-st.subheader("Feature Kernel (using ResNet50) per Class")
+st.subheader("🔍 Feature Kernels (using ResNet50) per Class")
+
+st.write("""
+In this section, we explore the **feature kernels** extracted from the **last 6 layers** of a **ResNet50** model. These kernels represent the learned features for each class, showing how the model detects important visual patterns specific to each category.
+
+By examining these feature kernels, we gain deeper insights into the model's **understanding** of different object classes and how it distinguishes between them.
+""")
+
 col_left, col_right = st.columns(2)
 
 with col_left:
@@ -85,7 +124,14 @@ with col_right:
 
 # ------------------------------------------------------------------
 # 5) Section for SHAP Values on an Image Based on Slider Input
-st.header("Shaply Values for Image")
+st.header("🧠 SHAP Values for Image")
+
+st.markdown("""
+The SHAP values provide an explanation of how the **ResNet50 model** makes predictions on an image.  
+The output highlights the most important regions of the image that influenced the model's decision, showing which pixels contribute positively or negatively to the predicted class.  
+This visualization helps us understand the model's reasoning behind its predictions.
+""")
+
 slider_value = st.slider("Select an image index (0-48)", min_value=0, max_value=48, value=12, step=1)
 
 progressbar=st.progress(0)
