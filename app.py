@@ -54,7 +54,7 @@ selected_class = st.radio("Select Class (1-10)", options=list(range(0, 10)))
 st.subheader("Class Average Value Representation")
 # Adjust the image path as needed. Here we assume an image file naming convention.
 avg_image_path = f"src/class/avg/{selected_class}.png"
-st.image(avg_image_path, caption=f"Class Average for Class {selected_class}", use_column_width=True)
+st.image(avg_image_path, caption=f"Class Average for Class {selected_class}", use_container_width=True)
 
 # Display six images arranged as three rows, two images per row
 st.subheader("Feature Kernel (using ResNet50) per Class")
@@ -62,26 +62,26 @@ col_left, col_right = st.columns(2)
 
 with col_left:
     img_path_left = f"src/class/kernel/{selected_class}- (1).png"
-    st.image(img_path_left, caption=f"Kernel 1", use_column_width=True)
+    st.image(img_path_left, caption=f"Kernel 1", use_container_width=True)
 with col_right:
     img_path_right = f"src/class/kernel/{selected_class}- (2).png"
-    st.image(img_path_right, caption=f"Kernel 2", use_column_width=True)
+    st.image(img_path_right, caption=f"Kernel 2", use_container_width=True)
 
 col_left, col_right = st.columns(2)
 with col_left:
     img_path_left = f"src/class/kernel/{selected_class}- (3).png"
-    st.image(img_path_left, caption=f"Kernel 3", use_column_width=True)
+    st.image(img_path_left, caption=f"Kernel 3", use_container_width=True)
 with col_right:
     img_path_right = f"src/class/kernel/{selected_class}- (4).png"
-    st.image(img_path_right, caption=f"Kernel 4", use_column_width=True)
+    st.image(img_path_right, caption=f"Kernel 4", use_container_width=True)
 
 col_left, col_right = st.columns(2)
 with col_left:
     img_path_left = f"src/class/kernel/{selected_class}- (5).png"
-    st.image(img_path_left, caption=f"Kernel 5", use_column_width=True)
+    st.image(img_path_left, caption=f"Kernel 5", use_container_width=True)
 with col_right:
     img_path_right = f"src/class/kernel/{selected_class}- (6).png"
-    st.image(img_path_right, caption=f"Kernel 6", use_column_width=True)
+    st.image(img_path_right, caption=f"Kernel 6", use_container_width=True)
 
 # ------------------------------------------------------------------
 # 5) Section for SHAP Values on an Image Based on Slider Input
@@ -96,7 +96,7 @@ for percent in range(101):
     text.text(f"Calculating... {percent}%")
 text.empty()
 shap_image_path = f"src/shap/{slider_value}.png"
-st.image(shap_image_path, caption=f"Shap Value for Image {slider_value}", use_column_width=True)
+st.image(shap_image_path, caption=f"Shap Value for Image {slider_value}", use_container_width=True)
 # model = ResNet50(weights="imagenet")
 
 #     # File paths for the data and class names
