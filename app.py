@@ -68,12 +68,17 @@ class_names = [
     "Dog", "Frog", "Horse", "Ship", "Truck"
 ]
 
-# Create the radio button with vertical alignment and class names
+# Create a mapping from class names to numeric values
+class_to_index = {name: index for index, name in enumerate(class_names)}
+
+# Create the radio button with class names
 selected_class = st.radio("Select Class", options=class_names, index=0)
+
+# Get the corresponding numeric index for the selected class
+class_index = class_to_index[selected_class]
 
 # Display the selected class
 st.write(f"You selected: {selected_class}")
-
 
 # Display image for "class average value representation"
 st.subheader("📊 Class-Wise Average Activation Representation")
@@ -84,9 +89,10 @@ For each class in the dataset, we've averaged the **activation values** from the
 This provides insight into the **class-specific patterns** learned across the layers of our fully connected neural network.
 """)
 
-# Adjust the image path as needed. Here we assume an image file naming convention.
-avg_image_path = f"src/class/avg/{selected_class}.png"
+# Adjust the image path using the numeric index
+avg_image_path = f"src/class/avg/{class_index}.png"
 st.image(avg_image_path, caption=f"Class Average for Class {selected_class}", use_container_width=True)
+
 
 # Display six images arranged as three rows, two images per row
 st.subheader("🔍 Feature Kernels (using ResNet50) per Class")
