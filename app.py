@@ -106,26 +106,26 @@ By examining these feature kernels, we gain deeper insights into the model's **u
 col_left, col_right = st.columns(2)
 
 with col_left:
-    img_path_left = f"src/class/kernel/{selected_class}- (1).png"
+    img_path_left = f"src/class/kernel/{class_index}- (1).png"
     st.image(img_path_left, caption=f"Kernel 1", use_container_width=True)
 with col_right:
-    img_path_right = f"src/class/kernel/{selected_class}- (2).png"
+    img_path_right = f"src/class/kernel/{class_index}- (2).png"
     st.image(img_path_right, caption=f"Kernel 2", use_container_width=True)
 
 col_left, col_right = st.columns(2)
 with col_left:
-    img_path_left = f"src/class/kernel/{selected_class}- (3).png"
+    img_path_left = f"src/class/kernel/{class_index}- (3).png"
     st.image(img_path_left, caption=f"Kernel 3", use_container_width=True)
 with col_right:
-    img_path_right = f"src/class/kernel/{selected_class}- (4).png"
+    img_path_right = f"src/class/kernel/{class_index}- (4).png"
     st.image(img_path_right, caption=f"Kernel 4", use_container_width=True)
 
 col_left, col_right = st.columns(2)
 with col_left:
-    img_path_left = f"src/class/kernel/{selected_class}- (5).png"
+    img_path_left = f"src/class/kernel/{class_index}- (5).png"
     st.image(img_path_left, caption=f"Kernel 5", use_container_width=True)
 with col_right:
-    img_path_right = f"src/class/kernel/{selected_class}- (6).png"
+    img_path_right = f"src/class/kernel/{class_index}- (6).png"
     st.image(img_path_right, caption=f"Kernel 6", use_container_width=True)
 
 # ------------------------------------------------------------------
