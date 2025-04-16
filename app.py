@@ -14,9 +14,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Optional Rerun Button
-if st.button("🔁 Rerun the App"):
-    st.experimental_rerun()
+
 
 # --------------------------------------------------
 # 1. Header
